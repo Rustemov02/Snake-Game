@@ -1,7 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import Snake from "./Snake";
 import Menu from "./Menu";
 import Food from './Food'
+import Score from './Score'
 
 const getRandomFood = () => {
   let min = 1;
@@ -16,9 +17,9 @@ const initialState = {
   direction: "RIGHT",
   speed: 100,
   route: "menu",
-  snakeDots: [[0, 0], [0, 2]]
+  snakeDots: [[0, 0], [0, 2]],
+  username: 'deneme'
 };
-
 
 class App extends Component {
 
@@ -34,7 +35,6 @@ class App extends Component {
 
   componentDidUpdate() {
     this.onSnakeOutOfBounds();
-    // this.onSnakeCollapsed();
     this.onSnakeEats();
   }
 
@@ -89,17 +89,6 @@ class App extends Component {
       }
     }
   }
-  //  I can't understand it well :( back again please..
-  // onSnakeCollapsed() {
-  //   let snake = [...this.state.snakeDots];
-  //   let head = snake[snake.length - 1];
-  //   snake.pop();
-  //   snake.forEach(dot => {
-  //     if (head[0] == dot[0] && head[1] == dot[1]) {
-  //       this.gameOver();
-  //     }
-  //   });
-  // }
 
   onSnakeEats() {
     let head = this.state.snakeDots[this.state.snakeDots.length - 1];
@@ -129,34 +118,33 @@ class App extends Component {
     }
   }
 
-
   gameOver() {
-    alert('game over')
+    alert(`GAME OVER, your score is ${this.state.snakeDots.length - 2}`);
     this.setState(initialState)
   }
 
-  onRouteChange = () => {
+  onRouteChange = (user) => {
+    if (user.trim() == '') return alert('Please enter your name !')
     this.setState({
-      route: "game"
+      route: "game",
+      username: user
     });
   };
 
-
-
   render() {
     const { route, snakeDots, food } = this.state;
+
     return (
       <div>
         {route === "menu" ? (
-          <div>
-            <Menu onRouteChange={this.onRouteChange} />
-          </div>
+          <Menu onRouteChange={this.onRouteChange} getUsername={this.getUsername} />
         ) : (
           <div>
             <div className="game-area">
               <Snake snakeDots={snakeDots} />
               <Food dot={food} />
             </div>
+            <Score username={this.state.username} score={this.state.snakeDots.length - 2} />
           </div>
         )}
       </div>

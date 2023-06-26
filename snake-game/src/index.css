@@ -1,18 +1,19 @@
-body{
-  background-color: #1e1e1e;
+body {
+  background-color: #afcfcb;
+  position: relative;
 }
 
-.game-area{
-    position: relative;
-    width : 600px;
-    height : 500px;
-    border : solid red 2px;
-    margin : 70px auto;
-    box-shadow: 0 0 10px #abbfc0;
+.game-area {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  border: solid blue 2px;
+  margin: 70px auto;
+  box-shadow: 0 0 10px #abbfc0;
 }
 
-.snake{
-  position: absolute; 
+.snake {
+  position: absolute;
   width: 2%;
   height: 2%;
   background-color: #dc042c;
@@ -24,7 +25,64 @@ body{
   position: absolute;
   width: 12px;
   height: 12px;
-  background-color: white;
+  background-color: blue;
   border-radius: 20px;
   z-index: 1;
+}
+/*  ----- MENU ------ */
+.wrapper {
+  height: 400px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 130px auto;
+}
+.wrapper input:first-child{
+  font-size: 25px;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.wrapper .start{
+  font-size: 23px;
+  padding: 12px 10px;
+  margin: 4px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: aqua;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* ------- SCORE -------- */
+.score {
+  border: solid blue 2px;
+  padding: 5px 10px;
+  position: absolute;
+  top: 0px;
+  left: 40px;
+  width: 200px;
+  height: 150px;
+}
+
+.score h2 {
+  color: blue
+}
+
+.score h3 {
+  font-size: 23px;
+}
+
+.score button {
+  padding: 4px 10px;
+  font-size: 18px;
+  border: none;
+  background-color: blue;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white
 }
